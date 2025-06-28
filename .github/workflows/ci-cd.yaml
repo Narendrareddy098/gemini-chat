@@ -35,7 +35,7 @@ jobs:
         aws-region: us-east-1
 
     - name: Update Kubeconfig
-      run: aws eks update-kubeconfig --name nareneks
+      run: aws eks update-kubeconfig --name naren-cluster
 
     - name: Apply Kubernetes Manifests
       run: kubectl apply -f k8s/

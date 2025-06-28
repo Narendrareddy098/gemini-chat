@@ -26,7 +26,14 @@ jobs:
         docker build -t narenreddy1/gemini:latest ./frontend
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         docker push narenreddy1/gemini:latest
-
+        
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v3
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+        
     - name: Update K8s manifests
       run: |
         kubectl config use-context arn:aws:eks:us-east-1:970107227636:cluster/naren-cluster

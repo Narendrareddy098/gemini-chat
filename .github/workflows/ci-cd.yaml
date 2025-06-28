@@ -16,19 +16,19 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ap-south-1
+        aws-region: us-east-1
 
     - name: Set up Docker
       uses: docker/setup-buildx-action@v3
 
     - name: Build & Push Docker image
       run: |
-        docker build -t your-dockerhub-username/gemini-frontend:latest ./frontend
+        docker build -t narenreddy1/gemini:latest ./frontend
         echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u your-dockerhub-username --password-stdin
-        docker push your-dockerhub-username/gemini-frontend:latest
+        docker push narenreddy1/gemini:latest
 
     - name: Update K8s manifests
       run: |
-        kubectl config use-context arn:aws:eks:ap-south-1:XXXXXX:cluster/eksnaren
+        kubectl config use-context arn:aws:eks:us-east-1:970107227636:cluster/naren-cluster
         kubectl apply -f k8s/
 

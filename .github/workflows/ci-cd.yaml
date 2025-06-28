@@ -24,7 +24,7 @@ jobs:
     - name: Build & Push Docker image
       run: |
         docker build -t narenreddy1/gemini:latest ./frontend
-        echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u your-dockerhub-username --password-stdin
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         docker push narenreddy1/gemini:latest
 
     - name: Update K8s manifests

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gemini-service
+spec:
+  selector:
+    app: gemini
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP
+
